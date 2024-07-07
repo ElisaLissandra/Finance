@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use App\Models\Salary;
+
 
 class User extends Authenticatable implements JWTSubject 
 {
@@ -54,6 +56,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() 
     {
         return [];
+    }
+
+    public function salaries() {
+        return $this->hasMany(Salary::class);
     }
 }
 
