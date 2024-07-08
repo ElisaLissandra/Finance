@@ -20,8 +20,8 @@ class CostController extends Controller
      */
     public function index()
     {
-        $cost = $this->costRepository->index([]);
-        return new CustomResponse(['cost' => $cost], 200);
+        $cost = $this->costRepository->index();
+        return new CustomResponse($cost->toArray(), 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class CostController extends Controller
             $costValidated = $request->validated();
             $this->costRepository->store($costValidated);
 
-            return new CustomResponse('Custo cadastrado com sucesso', 201);
+            return new CustomResponse(null, 201,'Custo cadastrado com sucesso');
         }catch(\Exception $e) { 
             throw new CustomException($e->getMessage(), 404);
         }
@@ -72,7 +72,7 @@ class CostController extends Controller
         $costUpdate = $request->validated();
         $this->costRepository->update($costUpdate, $slug);
 
-        return new CustomResponse('Custo atualizado com sucesso', 200);
+        return new CustomResponse(null, 200, 'Custo atualizado com sucesso');
     }
 
     /**
@@ -81,6 +81,6 @@ class CostController extends Controller
     public function destroy(string $slug)
     {
         $this->costRepository->destroy($slug);
-        return new CustomResponse('Custo excluído com sucesso', 200);
+        return new CustomResponse(null, 200, 'Custo excluído com sucesso');
     }
 }

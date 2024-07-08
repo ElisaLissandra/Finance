@@ -19,8 +19,8 @@ class FinanceController extends Controller
      */
     public function index()
     {
-        $finance = $this->financeRepository->index([]);
-        return new CustomResponse(['finance' => $finance], 200);
+        $finance = $this->financeRepository->index();
+        return new CustomResponse($finance->toArray(), 200);
     }
 
     /**
