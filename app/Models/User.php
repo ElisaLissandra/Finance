@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use App\Models\Salary;
+use App\Models\Cost;
 
 
 class User extends Authenticatable implements JWTSubject 
@@ -60,6 +61,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function salaries() {
         return $this->hasMany(Salary::class);
+    }
+
+    public function costs() {
+        return $this->hasMany(Cost::class);
     }
 }
 
