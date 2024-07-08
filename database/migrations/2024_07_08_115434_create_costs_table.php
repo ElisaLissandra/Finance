@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('slug')->unique();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

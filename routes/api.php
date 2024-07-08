@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\CostController;
+use App\Http\Controllers\FinanceController;
 
 Route::group([
     'middleware' => 'api',
@@ -32,4 +32,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/cost/{slug}/edit', [CostController::class, 'edit'])->name('edit');
     Route::put('/cost/{slug}', [CostController::class, 'update'])->name('update');
     Route::delete('/cost/{slug}', [CostController::class, 'destroy'])->name('delete');
+
+    Route::get('/finance', [FinanceController::class, 'index'])->name('index');
 });
+
+
