@@ -19,7 +19,7 @@ class UserController extends Controller
     public function register(RegisterRequest $request) {
         $register = $request->validated();
         $this->userRepository->register($register);
-        return new CustomResponse('Usuário cadastrado com sucesso', 200);   
+        return new CustomResponse(null, 200,'Usuário cadastrado com sucesso');   
     }
 
     public function login(LoginRequest $request) {
@@ -48,6 +48,6 @@ class UserController extends Controller
     
     public function logout() {
         $this->userRepository->logout();
-        return new CustomResponse('Sessão encerrada com sucesso', 200);
+        return new CustomResponse(null, 200, 'Sessão encerrada com sucesso');
     }
 }

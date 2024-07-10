@@ -6,19 +6,25 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\FinanceController;
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-],
-function() {
-    Route::post('/register', [UserController::class, 'register'])->name('register');
-    Route::post('/login', [UserController::class, 'login'])->name('login');
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'auth'
+// ],
+// function() {
+//     Route::post('/register', [UserController::class, 'register'])->name('register');
+//     Route::post('/login', [UserController::class, 'login'])->name('login');
+//     Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api')->name('logout');
+//     Route::post('/refresh', [UserController::class,'refreshToken'])->middleware('auth:api')->name('refresh');
+
+// });
+
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api')->name('logout');
     Route::post('/refresh', [UserController::class,'refreshToken'])->middleware('auth:api')->name('refresh');
 
-});
-
-Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/salary', [SalaryController::class, 'index'])->name('index');
     Route::post('/salary', [SalaryController::class, 'store'])->name('store');
     Route::get('/salary/{slug}', [SalaryController::class, 'show'])->name('show');
