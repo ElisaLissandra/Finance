@@ -24,4 +24,14 @@ class UserRepository implements UserRepositoryInterface {
         Auth::logout();
     }
 
+    public function getUser() {
+        $user = Auth::user();
+        if ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+            ];
+        }
+        return null;
+    }
 }

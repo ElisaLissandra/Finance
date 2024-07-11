@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
 
@@ -6,6 +7,7 @@ export default function login() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
 
     const { setUser, setToken } = useStateContext();
 
@@ -19,8 +21,9 @@ export default function login() {
 
         axiosClient.post('login', playload) 
         .then(({data}) => {
-            setToken(data.token);
-            setUser(data.user);
+            setToken(data.data.token);
+            setUser(data.data.user);
+            navigate('/finance');
         })
         .catch(err => {
             const response = err.response;

@@ -22,8 +22,9 @@ Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api')->name('logout');
-    Route::post('/refresh', [UserController::class,'refreshToken'])->middleware('auth:api')->name('refresh');
+    Route::get('/user', [UserController::class, 'getUser'])->name('user');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::post('/refresh', [UserController::class,'refreshToken'])->name('refresh');
 
     Route::get('/salary', [SalaryController::class, 'index'])->name('index');
     Route::post('/salary', [SalaryController::class, 'store'])->name('store');

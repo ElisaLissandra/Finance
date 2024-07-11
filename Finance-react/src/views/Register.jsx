@@ -13,21 +13,23 @@ export default function register () {
     // Armazena os dados e o token do usuário 
     const {setUser, setToken} = useStateContext();
 
+
     // Envia os dados do formulário para API do Laravel
     const Submit = (e) => {
         e.preventDefault();
 
-        const playload = {
+        const payload = {
             name: nameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value
         }
 
         // Axios post
-        axiosClient.post('register', playload)
+        axiosClient.post('register', payload)
             .then(({data}) => {
                 setToken(data.token);
                 setUser(data.user);
+
             })
             .catch(err => {
                 const response = err.response;

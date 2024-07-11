@@ -50,4 +50,9 @@ class UserController extends Controller
         $this->userRepository->logout();
         return new CustomResponse(null, 200, 'Sessão encerrada com sucesso');
     }
+
+    public function getUser() {
+        $user = $this->userRepository->getUser();
+        return new CustomResponse($user, 200);
+    }
 }
