@@ -9,7 +9,7 @@ export default function DefaultLayout() {
     const { user, token, setUser, setToken } = useStateContext();
 
     if(!token) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/" />;
     }
 
     const onLogout = (e) => {
@@ -32,7 +32,7 @@ export default function DefaultLayout() {
 
     return (
         <div>
-            <h1>Bem-vindo, {user.name}</h1>
+            <h1>{user.name}</h1>
             <button onClick={onLogout}>Logout</button>
             <Outlet />
         </div>

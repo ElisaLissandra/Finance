@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
+import { Link } from "react-router-dom";
 
 export default function login() {
 
@@ -40,6 +41,9 @@ export default function login() {
             <input type="email" ref={emailRef} placeholder="Email" required />
             <input type="password" ref={passwordRef} placeholder="Senha" required />
             <button>Entrar</button>
+            <p className="message">
+                Não está registrado? <Link to="/register">Crie uma conta</Link>
+            </p>
         </form>
     );
 }

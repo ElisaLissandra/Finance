@@ -5,10 +5,12 @@ import GuestLayout from './Components/GuestLayout.jsx';
 import Register from './views/Register.jsx';
 import Login from './views/Login.jsx';
 import Finance from './views/Finance.jsx';
+import Salary from './views/Salary.jsx';
+import Cost from './views/Cost.jsx';
 
 const router = createBrowserRouter([
     {
-        path:'/',
+        path:'/register',
         element:<Register />
     },
     {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
         element: <GuestLayout />,
         children: [
             {
-                path: '/login',
+                path: '/',
                 element: <Login />
             }
         ]
@@ -29,7 +31,16 @@ const router = createBrowserRouter([
             {
                 path: '/finance',
                 element: <Finance />
+            },
+            {
+                path: '/salary',
+                element: <Salary />
+            },
+            {
+                path: '/cost',
+                element: <Cost />
             }
+
         ]
     }
 ])
