@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
 import { Navigate, Outlet } from "react-router-dom";
+import NavBar from "./Layout/NavBar";
 
 
 export default function DefaultLayout() {
@@ -14,7 +15,6 @@ export default function DefaultLayout() {
 
     const onLogout = (e) => {
         e.preventDefault();
-
         axiosClient.post('/logout')
         .then(({}) => {
             setUser(null);
@@ -31,10 +31,9 @@ export default function DefaultLayout() {
     }, []);
 
     return (
-        <div>
-            <h1>{user.name}</h1>
-            <button onClick={onLogout}>Logout</button>
+        <>
+            <NavBar user={user} onLogout={onLogout} />
             <Outlet />
-        </div>
-    )
+        </>
+    );
 }

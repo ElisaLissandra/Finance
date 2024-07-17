@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axiosClient from "../axiosClient";
 import { Link } from "react-router-dom";
+import styles from "../views/Finance.module.css";
+import AddButton from "../Components/Layout/Buttons/AddButton.jsx";
+import Container from "../Components/Layout/Container.jsx";
 
 export default function Finance() {
     const [finance, setFinance] = useState([]);
@@ -21,44 +24,78 @@ export default function Finance() {
     }, []); // Lista de dependências vazia para garantir que o efeito execute uma vez
 
     return (
-        <div>
-            <h1>Finance</h1>
-            <div>
-                <Link to="/salary">Adicionar Salário</Link>
-            </div>
-            <div>
-                <Link to="/cost">Adicionar Despesas</Link>
-            </div>
-            <div>
+        <>
+            <Container>
                 {loading ? (
                     <p>Carregando...</p>
                 ) : finance.length > 0 ? (
                     finance.map((item) => (
-                        <div key={item.id}>
-                            <h3>Salários:</h3>
-                            <ul>
-                                {item.salaries.map((salary) => (
-                                    <li key={salary.id}>
-                                        <p>Descrição: {salary.description}</p>
-                                        <p>Valor: {salary.salary}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                            <h3>Despesas:</h3>
-                            <ul>
-                                {item.costs.map((cost) => (
-                                    <li key={cost.id}>
-                                        <p>Descrição: {cost.description}</p>
-                                        <p>Valor: {cost.cost}</p>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className={styles.finance_container}>
+                            <h1>Finança</h1>
+                            <div className={styles.add_button}>
+                                <AddButton to="/salary" text="Salário" />
+                                <AddButton to="/cost" text="Débito" />
+                            </div>
+                            <div className={styles.table_container}>
+                                <table key={item.id} className={styles.table}>
+                                    <thead>
+                                        <tr>
+                                            <th className={styles.table_head}>
+                                                Tipo
+                                            </th>
+                                            <th className={styles.table_head}>
+                                                Data
+                                            </th>
+                                            <th className={styles.table_head}>
+                                                Descrição
+                                            </th>
+                                            <th className={styles.table_head}>
+                                                Valor
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {item.salaries.map((salary) => (
+                                            <tr key={salary.id} className={styles.table_row}>
+                                                <td className={styles.table_row_salary }>
+                                                    Entrada
+                                                </td>
+                                                <td className={styles.table_cell}>
+                                                    {salary.created_at}
+                                                </td>
+                                                <td className={styles.table_cell}>
+                                                    {salary.description}
+                                                </td>
+                                                <td className={styles.table_cell }>
+                                                    {salary.salary}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        {item.costs.map((cost) => (
+                                            <tr key={cost.id} className={styles.table_row}>
+                                                <td className={styles.table_row_cost}>
+                                                    Débito
+                                                </td>
+                                                <td className={styles.table_cell}>
+                                                    {cost.created_at}
+                                                </td>
+                                                <td className={styles.table_cell}>
+                                                    {cost.description}
+                                                </td>
+                                                <td className={styles.table_cell}>
+                                                    {cost.cost}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     ))
                 ) : (
                     <p>Nenhum dado encontrado.</p>
                 )}
-            </div>
-        </div>
+            </Container>
+        </>
     );
 }

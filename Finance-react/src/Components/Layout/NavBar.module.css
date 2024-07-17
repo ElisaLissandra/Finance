@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  background-color: #003366;
+  padding: 1.5em;
+}
+
+.list {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  margin-left: auto;
+}
+
+.item {
+  margin-right: 1em;
+  color: white;
+}
+
+
+
