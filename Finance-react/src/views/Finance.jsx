@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axiosClient from "../axiosClient";
-import { Link } from "react-router-dom";
 import styles from "../views/Finance.module.css";
 import AddButton from "../Components/Layout/Buttons/AddButton.jsx";
 import Container from "../Components/Layout/Container.jsx";
