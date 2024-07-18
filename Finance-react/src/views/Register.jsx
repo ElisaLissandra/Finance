@@ -2,6 +2,10 @@ import axiosClient from "../axiosClient";
 import React, { useRef } from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
+import Form from "../Components/Layout/Form/Form";
+import Input from "../Components/Layout/Form/Input";
+import Button from "../Components/Layout/Form/Button";
+import Links from "../Components/Layout/Form/Links";
 
 export default function register() {
     // Referencia as informações adicionas no formulário
@@ -15,7 +19,7 @@ export default function register() {
     const { setUser, setToken } = useStateContext();
 
     // Envia os dados do formulário para API do Laravel
-    const Submit = (e) => {
+    const submit = (e) => {
         e.preventDefault();
 
         const payload = {
@@ -31,7 +35,7 @@ export default function register() {
             .then(({ data }) => {
                 setToken(data.token);
                 setUser(data.user);
-                navegate("/login");
+                navegate("/");
             })
             .catch((err) => {
                 const response = err.response;
@@ -43,17 +47,25 @@ export default function register() {
     };
 
     return (
-        <form onSubmit={Submit}>
-            <input type="text" ref={nameRef} placeholder="Nome" required />
-            <input type="email" ref={emailRef} placeholder="Email" required />
-            <input
-                type="password"
-                ref={passwordRef}
-                placeholder="Senha"
-                required
-            />
-            {/* <input type="password" ref={password_confirmationRef} placeholder="Confirmar Senha" required />  */}
-            <button>Cadastrar</button>
-        </form>
+        <>
+            <Form title="Cadastre-se" submit={submit}>
+                <Input 
+                    type="text" 
+                    ref={nameRef} 
+                    placeholder="Nome" 
+                />
+                <Input 
+                    type="email" 
+                    ref={emailRef} 
+                    placeholder="Email" />
+                <Input 
+                    type="password" 
+                    ref={passwordRef}
+                     placeholder="Senha" 
+                />
+                <Button type="submit" text="Cadastrar" />
+                <Links text="Já possui login?" to="/" textTo="Login" />
+            </Form>
+        </>
     );
 }
