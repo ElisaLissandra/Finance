@@ -2,8 +2,10 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
-import { Link } from "react-router-dom";
-import styles from "../views/Login.module.css";
+import Form from "../Components/Layout/Form/Form.jsx";
+import Input from "../Components/Layout/Form/Input.jsx";
+import Button from "../Components/Layout/Form/Button.jsx";
+import Links from "../Components/Layout/Form/Links.jsx";
 
 export default function login() {
     const emailRef = useRef();
@@ -37,29 +39,13 @@ export default function login() {
     };
 
     return (
-        <div className={styles.container_login_signup}>
-            <form onSubmit={Submit} className={styles.login_signup_form}>
-                <h1 className={styles.login_title}>Login</h1>
-                <input
-                    className={styles.login_input}
-                    type="email"
-                    ref={emailRef}
-                    placeholder="Email"
-                    required
-                />
-                <input
-                    className={styles.login_input}
-                    type="password"
-                    ref={passwordRef}
-                    placeholder="Senha"
-                    required
-                />
-                <button className={styles.btn_login}>Entrar</button>
-                <p className={styles.text_register}>
-                    Não está registrado?{" "}
-                    <Link  className={styles.link_register} to="/register">Crie uma conta</Link>
-                </p>
-            </form>
-        </div>
+        <>
+            <Form title="Login" onSubmit={Submit}>
+                <Input type="email" ref={emailRef} placeholder="Email" />
+                <Input type="password" ref={passwordRef} placeholder="Senha" />
+                <Button type="submit" text="Login"/>
+                <Links text="Não está registrado?" to="/register" textTo="Crie uma conta"/>
+            </Form>
+        </>
     );
 }

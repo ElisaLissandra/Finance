@@ -1,0 +1,12 @@
+.text_register {
+  text-decoration: none;
+  color: #b3b3b3;
+  font-size: 16px;
+  text-align: center;
+}
+
+.link_register {
+  color: #004080;
+  text-decoration: none;
+  margin: 10px;
+}
