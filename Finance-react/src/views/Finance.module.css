@@ -1,7 +1,19 @@
 .finance_container {
   width: 95%;
-  margin: 90px auto;
+  margin: 2em auto;
 }
+
+.title_finance{
+  font-size: 22px;
+  color: #bbbbbb;
+}
+
+.value_salary {
+  font-weight: bold;
+  font-size: 28px;
+  color: #004080;
+}
+
 
 .table_container {
   border: 1px solid #cccccc;

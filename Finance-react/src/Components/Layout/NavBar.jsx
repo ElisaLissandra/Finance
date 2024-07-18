@@ -6,7 +6,7 @@ export default function NavBar({ user, onLogout }) {
             <ul className={styles.list}>
                 <li className={styles.item}>{user.name}</li>
                 <li>
-                    <button onClick={onLogout}>Logout</button>
+                    <button className={styles.logout_button} onClick={onLogout}>Logout</button>
                 </li>
             </ul>
         </nav>

@@ -7,20 +7,29 @@ import Container from "../Components/Layout/Container.jsx";
 
 export default function Finance() {
     const [finance, setFinance] = useState([]);
-    const [loading, setLoading] = useState(true); // Estado para controle do carregamento
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         axiosClient
             .get("/finance")
             .then(({ data }) => {
                 setFinance(data.data);
-                setLoading(false); // Dados carregados, definir loading como false
+                setLoading(false); 
             })
             .catch((error) => {
                 console.error("Erro ao buscar dados de finanças:", error);
-                setLoading(false); // Em caso de erro, definir loading como false
+                setLoading(false); 
             });
     }, []); // Lista de dependências vazia para garantir que o efeito execute uma vez
+
+    const calculateSalarySum = (salaries) => {
+        return salaries.reduce((total, salary) => total + parseFloat(salary.salary), 0);
+    }
+
+    const formatDateTime = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        return date.toLocaleString('pt-BR', { timeZone: 'UTC' }); 
+    };
 
     return (
         <>
@@ -29,14 +38,17 @@ export default function Finance() {
                     <p>Carregando...</p>
                 ) : finance.length > 0 ? (
                     finance.map((item) => (
-                        <div className={styles.finance_container}>
-                            <h1>Finança</h1>
+                        <div key={item.id} className={styles.finance_container}>
+                            <div className={styles.sum_salary}>
+                                <p className={styles.title_finance}>Saldo Disponível: </p>
+                                <p className={styles.value_salary}>R$ {calculateSalarySum(item.salaries).toFixed(2)}</p>
+                            </div>
                             <div className={styles.add_button}>
                                 <AddButton to="/salary" text="Salário" />
                                 <AddButton to="/cost" text="Débito" />
                             </div>
                             <div className={styles.table_container}>
-                                <table key={item.id} className={styles.table}>
+                                <table className={styles.table}>
                                     <thead>
                                         <tr>
                                             <th className={styles.table_head}>
@@ -60,7 +72,7 @@ export default function Finance() {
                                                     Entrada
                                                 </td>
                                                 <td className={styles.table_cell}>
-                                                    {salary.created_at}
+                                                    {formatDateTime(salary.created_at)}
                                                 </td>
                                                 <td className={styles.table_cell}>
                                                     {salary.description}
@@ -76,7 +88,7 @@ export default function Finance() {
                                                     Débito
                                                 </td>
                                                 <td className={styles.table_cell}>
-                                                    {cost.created_at}
+                                                    {formatDateTime(cost.created_at)}
                                                 </td>
                                                 <td className={styles.table_cell}>
                                                     {cost.description}
