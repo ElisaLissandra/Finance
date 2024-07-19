@@ -1,6 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axiosClient from "../axiosClient";
+import SalaryRow from "../Components/Layout/Table/SalaryRow";
+import Table from "../Components/Layout/Table/Table.module";
+import Container from "../Components/Layout/Container";
 
 export default function Salary() {
     const [salaries, setSalaries] = useState([]);
@@ -20,36 +23,26 @@ export default function Salary() {
     });
 
     return (
-        <div>
-            <h1>Salary</h1>
-            {loading ? (
-                <p>Carregando...</p>
-            ) : salaries.length > 0 ? (
-                salaries.map((salary) => (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr key={salary.id}>
-                                <td>{salary.created_at}</td>
-                                <td>{salary.description}</td>
-                                <td>{salary.salary}</td>
-                                <td>Botão de editar</td>
-                                <td>Botão de exluir</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                ))
-            ) : (
-                <p>Nenhum dado encontrado.</p>
-            )}
-        </div>
+        <>
+            <Container>
+                <h1>Salary</h1>
+                {loading ? (
+                    <p>Carregando...</p>
+                ) : salaries.length > 0 ? (
+                    <Table
+                        type="Tipo"
+                        date="Data"
+                        description="Descrição"
+                        value="Valor"
+                    >
+                        {salaries.map((salary) => (
+                            <SalaryRow key={salary.id} salary={salary} />
+                        ))}
+                    </Table>
+                ) : (
+                    <p>Nenhum dado encontrado.</p>
+                )}
+            </Container>
+        </>
     );
 }

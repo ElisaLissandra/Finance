@@ -1,0 +1,48 @@
+.table_container {
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table_head {
+  background-color: #004080;
+  color: white;
+  text-align: center; 
+  padding: 1em;
+}
+
+.table_row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table_row:nth-child(even) {
+  background-color: #d9e6f2;
+}
+
+
+.table_cell {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
+
+.table_cell_salary{
+  font-weight: bold;
+  color: #155724; 
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
+
+.table_cell_cost{
+  font-weight: bold;
+  color: #dc3545; 
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
