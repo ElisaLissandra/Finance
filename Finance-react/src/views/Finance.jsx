@@ -7,6 +7,8 @@ import Container from "../Components/Layout/Container.jsx";
 import SalaryRow from "../Components/Layout/Table/SalaryRow";
 import CostRow from "../Components/Layout/Table/CostRow.jsx";
 import Table from "../Components/Layout/Table/Table.module.jsx";
+import SalaryAdd from "../Components/Layout/PopUp/SalaryAdd.jsx";
+import CostAdd from "../Components/Layout/PopUp/CostAdd.jsx";
 
 export default function Finance() {
     const [finance, setFinance] = useState([]);
@@ -52,6 +54,8 @@ export default function Finance() {
                             <AddButton to="/salary" text="Salário" />
                             <AddButton to="/cost" text="Débito" />
                         </div>
+                        <SalaryAdd/>
+                        <CostAdd />
                         <Table
                             type="Tipo"
                             date="Data"
