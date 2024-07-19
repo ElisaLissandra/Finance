@@ -4,6 +4,8 @@ import axiosClient from "../axiosClient";
 import SalaryRow from "../Components/Layout/Table/SalaryRow";
 import Table from "../Components/Layout/Table/Table.module";
 import Container from "../Components/Layout/Container";
+import EditButton from "../Components/Layout/Buttons/EditButton";
+import DeleteButton from "../Components/Layout/Buttons/DeleteButton";
 
 export default function Salary() {
     const [salaries, setSalaries] = useState([]);
@@ -29,16 +31,22 @@ export default function Salary() {
                 {loading ? (
                     <p>Carregando...</p>
                 ) : salaries.length > 0 ? (
-                    <Table
-                        type="Tipo"
-                        date="Data"
-                        description="Descrição"
-                        value="Valor"
-                    >
-                        {salaries.map((salary) => (
-                            <SalaryRow key={salary.id} salary={salary} />
-                        ))}
-                    </Table>
+                    <>
+                        <div>
+                            <EditButton />
+                            <DeleteButton />
+                        </div>
+                        <Table
+                            type="Tipo"
+                            date="Data"
+                            description="Descrição"
+                            value="Valor"
+                        >
+                            {salaries.map((salary) => (
+                                <SalaryRow key={salary.id} salary={salary} />
+                            ))}
+                        </Table>
+                    </>
                 ) : (
                     <p>Nenhum dado encontrado.</p>
                 )}

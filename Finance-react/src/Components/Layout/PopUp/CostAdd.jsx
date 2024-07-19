@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import axiosClient from "../../../axiosClient";
-import PopUpAdd from "./PopUpAdd";
+import PopUp from "./PopUp";
 
 export default function SalaryAdd() {
     const costRef = useRef();
@@ -25,14 +25,14 @@ export default function SalaryAdd() {
     };
 
     return (  
-      <PopUpAdd
+      <PopUp
         title="Adicionar Débito"
         submit={submit}
         labelValue="Valor do Débito"
         labelDescription="Descrição do Débito"
         refValue={costRef}
         refDescription={descriptionRef}
-        textButton="Adicionar Débito"
+        textButton="Adicionar"
       />
     );
 }
