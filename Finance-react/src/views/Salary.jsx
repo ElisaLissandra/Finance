@@ -25,7 +25,7 @@ export default function Salary() {
     return (
         <>
             <Container>
-                <h1>Salary</h1>
+                <h1>Salários</h1>
                 {loading ? (
                     <p>Carregando...</p>
                 ) : salaries.length > 0 ? (

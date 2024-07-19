@@ -9,7 +9,7 @@ export default function CostRow({ cost }) {
 
     return (
         <tr key={cost.id} className={TableStyles.table_row}>
-            <td className={TableStyles.table_cell_cost}>Entrada</td>
+            <td className={TableStyles.table_cell_cost}>Débito</td>
             <td className={TableStyles.table_cell}>
                 {formatDateTime(cost.created_at)}
             </td>
