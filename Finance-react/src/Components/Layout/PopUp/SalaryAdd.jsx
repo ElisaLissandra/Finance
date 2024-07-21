@@ -2,12 +2,13 @@ import React, { useRef } from "react";
 import axiosClient from "../../../axiosClient";
 import PopUp from "./PopUp";
 
-export default function SalaryAdd() {
+export default function SalaryAdd({show, onClose}) {
     const salaryRef = useRef();
     const descriptionRef = useRef();
 
     const submit = (e) => {
       e.preventDefault();
+      onClose();
 
       const payload = {
         salary: salaryRef.current.value,
@@ -24,6 +25,7 @@ export default function SalaryAdd() {
           });
     };
 
+
     return (  
       <PopUp
         title="Adicionar Salário"
@@ -33,6 +35,8 @@ export default function SalaryAdd() {
         refValue={salaryRef}
         refDescription={descriptionRef}
         textButton="Adicionar"
+        show={show}
+        onClose={onClose}
       />
     );
 }

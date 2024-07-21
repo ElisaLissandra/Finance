@@ -1,6 +1,17 @@
-.popup{
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
   width: 500px;
-  position: relative;
   z-index: 1;
   background: #FFFFFF;
   max-width: 500px;
@@ -10,8 +21,8 @@
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
-  
 }
+
 
 .header_popup {
   font-size: 0.7em;
@@ -23,7 +34,19 @@
   padding: 10px 20px; 
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
-  text-align: center; 
+  text-align: center;  
+}
+
+.close_button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  margin-left: auto;
+ 
 }
 
 .label {

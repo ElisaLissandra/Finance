@@ -13,6 +13,16 @@ import CostAdd from "../Components/Layout/PopUp/CostAdd.jsx";
 export default function Finance() {
     const [finance, setFinance] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showPopUp, setShowPopUp] = useState(false);
+
+
+    const openPopUp = () =>{
+        setShowPopUp(true);
+    }
+
+    const closePopUp = () => {
+        setShowPopUp(false);
+    }
 
     useEffect(() => {
         axiosClient
@@ -51,11 +61,11 @@ export default function Finance() {
                             </p>
                         </div>
                         <div className={styles.add_button}>
-                            <AddButton to="/salary" text="Salário" />
-                            <AddButton to="/cost" text="Débito" />
+                            <AddButton onClick={openPopUp} text="Salário" />
+                            <AddButton onClick={openPopUp} text="Débito" />
                         </div>
-                        <SalaryAdd/>
-                        <CostAdd />
+                        <SalaryAdd show={showPopUp} onClose={closePopUp} />
+                        <CostAdd show={showPopUp} onClose={closePopUp}/>
                         <Table
                             type="Tipo"
                             date="Data"
