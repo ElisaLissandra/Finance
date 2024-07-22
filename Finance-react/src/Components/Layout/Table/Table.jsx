@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Table.module.css";
 
-export default function Table({children, type, date, description, value}) {
+export default function Table({children, type, date, description, value, text}) {
     return (
         <div className={styles.table_container}>
             <table className={styles.table}>
@@ -11,10 +11,12 @@ export default function Table({children, type, date, description, value}) {
                         <th className={styles.table_head}>{date}</th>
                         <th className={styles.table_head}>{description}</th>
                         <th className={styles.table_head}>{value}</th>
+                        <th className={styles.table_head}>{text}</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  className={styles.tbody_scroll}> 
                     {children}
+                  <td className={styles.table_cell} colSpan={4}>&nbsp;</td>
                 </tbody>
             </table>
         </div>

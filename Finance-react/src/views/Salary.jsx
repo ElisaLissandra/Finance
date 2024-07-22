@@ -2,10 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axiosClient from "../axiosClient";
 import SalaryRow from "../Components/Layout/Table/SalaryRow";
-import Table from "../Components/Layout/Table/Table.module";
+import Table from "../Components/Layout/Table/Table";
 import Container from "../Components/Layout/Container";
 import EditButton from "../Components/Layout/Buttons/EditButton";
 import DeleteButton from "../Components/Layout/Buttons/DeleteButton";
+import stylesButtons from "../Components/Layout/Buttons/Buttons.module.css";
 
 export default function Salary() {
     const [salaries, setSalaries] = useState([]);
@@ -32,7 +33,7 @@ export default function Salary() {
                     <p>Carregando...</p>
                 ) : salaries.length > 0 ? (
                     <>
-                        <div>
+                        <div className={stylesButtons.buttons}>
                             <EditButton />
                             <DeleteButton />
                         </div>

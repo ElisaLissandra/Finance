@@ -13,7 +13,7 @@ export default function register() {
     const emailRef = useRef();
     const passwordRef = useRef();
     //const password_confirmationRef = useRef();
-    const navegate = useNavigate();
+    const navigate = useNavigate();
 
     // Armazena os dados e o token do usuário
     const { setUser, setToken } = useStateContext();
@@ -35,7 +35,7 @@ export default function register() {
             .then(({ data }) => {
                 setToken(data.token);
                 setUser(data.user);
-                navegate("/");
+                navigate("/");
             })
             .catch((err) => {
                 const response = err.response;

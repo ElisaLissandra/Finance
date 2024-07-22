@@ -2,6 +2,10 @@
   border: 1px solid #cccccc;
   border-radius: 8px;
   overflow: hidden;
+  max-height: 660px; 
+  position: relative;
+  z-index: 1;
+  margin-top: 25px;
 }
 
 .table {
@@ -9,10 +13,16 @@
   border-collapse: collapse;
 }
 
-.table_head {
+.table thead {
   background-color: #004080;
   color: white;
-  text-align: center; 
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table_head {
+  text-align: center;
   padding: 1em;
 }
 
@@ -24,7 +34,6 @@
   background-color: #d9e6f2;
 }
 
-
 .table_cell {
   padding: 1em;
   cursor: pointer;
@@ -32,7 +41,7 @@
   border-bottom: 1px solid #cccccc;
 }
 
-.table_cell_salary{
+.table_cell_salary {
   font-weight: bold;
   color: #155724; 
   padding: 1em;
@@ -41,11 +50,30 @@
   border-bottom: 1px solid #cccccc;
 }
 
-.table_cell_cost{
+.table_cell_cost {
   font-weight: bold;
   color: #dc3545; 
   padding: 1em;
   cursor: pointer;
   text-align: center;
   border-bottom: 1px solid #cccccc;
+}
+
+.tbody_scroll {
+  display: block;
+  max-height: 660px; 
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table thead, .table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }

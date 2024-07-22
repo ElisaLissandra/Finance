@@ -9,10 +9,5 @@
   color: #004080;
 }
 
-.add_button  {
-  justify-content: end;
-  display: flex;
-  gap: 15px; 
-  margin-bottom: 1em;
-}
+
 
