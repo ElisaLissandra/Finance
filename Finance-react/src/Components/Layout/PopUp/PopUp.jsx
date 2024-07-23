@@ -3,14 +3,9 @@ import styles from "./PopUp.module.css";
 
 const PopUp = ({
     title,
-    submit,
-    labelValue,
-    labelDescription,
-    refValue,
-    refDescription,
-    textButton,
     show,
     onClose,
+    children
 }) => {
     
     if (!show) return null;
@@ -25,33 +20,7 @@ const PopUp = ({
                         </button>
                         <h2>{title}</h2>
                     </div>
-                    <form onSubmit={submit}>
-                        <div>
-                            <label className={styles.label}>
-                                {labelValue}:
-                            </label>
-                            <input
-                                className={styles.input}
-                                type="number"
-                                ref={refValue}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className={styles.label}>
-                                {labelDescription}:
-                            </label>
-                            <input
-                                className={styles.input}
-                                type="text"
-                                ref={refDescription}
-                                required
-                            />
-                        </div>
-                        <button className={styles.button} type="submit">
-                            {textButton}
-                        </button>
-                    </form>
+                    {children}
                 </div>
             </div>
         </>

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import axiosClient from "../../../../axiosClient";
-import PopUp from "../PopUp";
+import FormPopUpAdd from "./FormPopUpAdd";
 
 export default function SalaryAdd({show, onClose}) {
     const salaryRef = useRef();
@@ -26,7 +26,7 @@ export default function SalaryAdd({show, onClose}) {
     };
     
     return (  
-      <PopUp
+      <FormPopUpAdd
         title="Adicionar Salário"
         submit={submit}
         labelValue="Valor do Salário"

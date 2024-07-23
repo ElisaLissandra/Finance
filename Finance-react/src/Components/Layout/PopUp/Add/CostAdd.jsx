@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import axiosClient from "../../../axiosClient";
-import PopUp from "./PopUp";
+import axiosClient from "../../../../axiosClient";
+import FormPopUpAdd from "./FormPopUpAdd";
 
 export default function CostAdd({show, onClose}) {
     const costRef = useRef();
@@ -26,7 +26,7 @@ export default function CostAdd({show, onClose}) {
     };
 
     return (  
-      <PopUp
+      <FormPopUpAdd
         title="Adicionar Débito"
         submit={submit}
         labelValue="Valor do Débito"

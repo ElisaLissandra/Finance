@@ -7,7 +7,7 @@ import SalaryRow from "../Components/Layout/Table/SalaryRow";
 import CostRow from "../Components/Layout/Table/CostRow.jsx";
 import Table from "../Components/Layout/Table/Table.jsx";
 import SalaryAdd from "../Components/Layout/PopUp/Add/SalaryAdd.jsx";
-import CostAdd from "../Components/Layout/PopUp/Add/SalaryAdd.jsx";
+import CostAdd from "../Components/Layout/PopUp/Add/CostAdd.jsx";
 import stylesButtons from "../Components/Layout/Buttons/Buttons.module.css";
 
 
@@ -18,6 +18,7 @@ export default function Finance() {
 
     const openPopUp = (type) => {
         setActivePopUp(type);
+        console.log("Clicou aqui");
     };
 
     const closePopUp = () => {
