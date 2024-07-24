@@ -18,7 +18,6 @@ export default function Finance() {
 
     const openPopUp = (type) => {
         setActivePopUp(type);
-        console.log("Clicou aqui");
     };
 
     const closePopUp = () => {

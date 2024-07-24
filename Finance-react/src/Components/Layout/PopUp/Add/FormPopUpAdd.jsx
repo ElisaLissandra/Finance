@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../PopUp.module.css";
 import PopUp from "../PopUp";
 
-export default function FormPopUp({
+export default function FormPopUpAdd({
     submit,
     labelValue,
     labelDescription,
