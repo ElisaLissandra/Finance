@@ -4,6 +4,8 @@ import PopUp from "../PopUp";
 
 export default function FormPopUpEdit({
     handleSubmit,
+    nameValue,
+    nameDescription,
     value,
     valueDescription,
     textButton,
@@ -19,7 +21,7 @@ export default function FormPopUpEdit({
                 <input
                     className={styles.input}
                     type="number"
-                    name="salary"
+                    name={nameValue}
                     value={value}
                     onChange={handleChange}
                 />
@@ -27,7 +29,7 @@ export default function FormPopUpEdit({
                 <input
                   className={styles.input}
                   type="text"
-                  name="description"
+                  name={nameDescription}
                   value={valueDescription}
                   onChange={handleChange}              
                 />

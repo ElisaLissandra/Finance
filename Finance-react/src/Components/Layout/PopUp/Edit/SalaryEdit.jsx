@@ -42,7 +42,9 @@ export default function SalaryEdit({ salary, onClose, show }) {
         <FormPopUpEdit
             handleSubmit={handleSubmit}
             title="Editar Salário"
+            nameValue="salary"
             value={formData.salary}
+            nameDescription="description"
             valueDescription={formData.description}
             textButton="Salvar"
             show={show}
