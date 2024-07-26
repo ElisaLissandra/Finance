@@ -4,10 +4,13 @@ import stylesButtons from "../Buttons/Buttons.module.css";
 import EditButton from "../Buttons/EditButton";
 import DeleteButton from "../Buttons/DeleteButton";
 import SalaryEdit from "../PopUp/Edit/SalaryEdit.jsx";
+import SalaryDelete from "../PopUp/Delete/SalaryDelete.jsx";
 
 export default function SalaryRow({ salary }) {
-    const [activePopUp, setActivePopUp] = useState(null); 
+    const [activeEditPopUp, setActiveEditPopUp] = useState(false); 
+    const [activeDeletePopUp, setActiveDeletePopUp] = useState(false); 
     const [editedSalary, setEditedSalary] = useState(null);
+    const [salaryToDelete, setSalaryToDelete] = useState(null);
 
     const openPopUp = () => {
         setEditedSalary({
@@ -16,11 +19,21 @@ export default function SalaryRow({ salary }) {
             salary: salary.salary,
         });
 
-        setActivePopUp(true);
+        setActiveEditPopUp(true);
+    };
+
+    const openDeletePopUp = () => {
+       setSalaryToDelete({
+        slug: salary.slug,
+        description: salary.description,
+        salary: salary.salary,
+    });
+       setActiveDeletePopUp(true);
     };
 
     const closePopUp = () => {
-        setActivePopUp(false);
+        setActiveEditPopUp(false);
+        setActiveDeletePopUp(false);
     };
 
 
@@ -41,15 +54,20 @@ export default function SalaryRow({ salary }) {
                 <td className={TableStyles.table_cell}>
                     <div className={stylesButtons.buttons}>
                         <EditButton onClick={openPopUp} />
-                        <DeleteButton />
+                        <DeleteButton onClick={openDeletePopUp} />
                     </div>
                 </td>
             </tr>
             <SalaryEdit 
                 salary={editedSalary}  
-                show={activePopUp} 
+                show={activeEditPopUp} 
                 onClose={closePopUp}
-            />        
+            /> 
+            <SalaryDelete 
+            salary={salaryToDelete}
+            show={activeDeletePopUp}
+            onClose={closePopUp}
+            />    
         </>
     );
 }

@@ -4,7 +4,7 @@
   gap: 15px; 
 }
 
-.add_button {
+.green_button {
   background-color: #155724;
   color: white;
   text-align: center;
@@ -16,10 +16,11 @@
   text-decoration: none;
   font-weight: bold;
   display: flex;
+  border: none;
 }
 
 
-.delete_button {
+.red_button {
   background-color: #dc3545; 
   color: white;
   text-align: center;
@@ -31,10 +32,11 @@
   text-decoration: none;
   font-weight: bold;
   display: flex;
+  border: none;
 
 }
 
-.edit_button {
+.orange_button {
   background-color: #fd7e14; 
   color: white;
   text-align: center;
@@ -46,6 +48,7 @@
   text-decoration: none;
   font-weight: bold;
   display: flex;
+  border: none;
   
 }
 

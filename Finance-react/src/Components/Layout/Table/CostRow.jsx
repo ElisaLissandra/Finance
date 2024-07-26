@@ -4,10 +4,14 @@ import stylesButtons from "../Buttons/Buttons.module.css";
 import EditButton from "../Buttons/EditButton";
 import DeleteButton from "../Buttons/DeleteButton";
 import CostEdit from "../PopUp/Edit/CostEdit";
+import CostDelete from "../PopUp/Delete/CostDelete";
 
 export default function CostRow({ cost }) {
-    const [activePopUp, setActivePopUp] = useState(null);
+    const [activeEditPopUp, setActiveEditPopUp] = useState(false);
+    const [activeDeletePopUp, setActiveDeletePopUp] = useState(false);
     const [editedCost, setEditedCost] = useState(null);
+    const [costToDelete, setCostToDelete] = useState(null);
+
 
     const formatDateTime = (dateTimeString) => {
         const date = new Date(dateTimeString);
@@ -20,11 +24,22 @@ export default function CostRow({ cost }) {
             description: cost.description,
             cost: cost.cost,
         });
-        setActivePopUp(true);
+        setActiveEditPopUp(true);
+    };
+
+
+    const openDeletePopUp = () => {
+        setCostToDelete({
+            slug: cost.slug,
+            description: cost.description,
+            cost: cost.cost,
+        });
+        setActiveDeletePopUp(true);
     };
 
     const closePopUp = () => {
-        setActivePopUp(false);
+        setActiveEditPopUp(false);
+        setActiveDeletePopUp(false);
     };
 
     return (
@@ -42,13 +57,18 @@ export default function CostRow({ cost }) {
                 <td className={TableStyles.table_cell}>
                     <div className={stylesButtons.buttons}>
                         <EditButton onClick={openPopUp} />
-                        <DeleteButton />
+                        <DeleteButton onClick={openDeletePopUp}/>
                     </div>
                 </td>
             </tr>
             <CostEdit
                 cost={editedCost}
-                show={activePopUp}
+                show={activeEditPopUp}
+                onClose={closePopUp}
+            />
+            <CostDelete
+                cost={costToDelete}
+                show={activeDeletePopUp}
                 onClose={closePopUp}
             />
         </>

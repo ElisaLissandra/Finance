@@ -4,7 +4,7 @@ import styles from "./Buttons.module.css";
 
 export default function EditButton({onClick}) {
   return (
-    <Link className={styles.edit_button} onClick={onClick}>
+    <Link className={styles.orange_button} onClick={onClick}>
       Editar
     </Link>
   );

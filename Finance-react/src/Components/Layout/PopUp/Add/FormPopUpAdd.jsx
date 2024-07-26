@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../PopUp.module.css";
 import PopUp from "../PopUp";
+import stylesButtons from "../../Buttons/Buttons.module.css"
 
 export default function FormPopUpAdd({
     submit,
@@ -34,7 +35,7 @@ export default function FormPopUpAdd({
                         required
                     />
                 </div>
-                <button className={styles.button} type="submit">
+                <button className={stylesButtons.green_button} type="submit">
                     {textButton}
                 </button>
             </form>

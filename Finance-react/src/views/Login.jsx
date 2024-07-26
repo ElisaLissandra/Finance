@@ -26,7 +26,6 @@ export default function Login() {
       .then(({ data }) => {
         setToken(data.data.token);
         setUser(data.data.user);
-        console.log(data.data.user)
         navigate("/finance");
       })
       .catch((err) => {

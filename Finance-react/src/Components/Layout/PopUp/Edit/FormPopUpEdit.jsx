@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../PopUp.module.css";
 import PopUp from "../PopUp";
+import stylesButtons from "../../Buttons/Buttons.module.css"
 
 export default function FormPopUpEdit({
     handleSubmit,
@@ -33,7 +34,7 @@ export default function FormPopUpEdit({
                   value={valueDescription}
                   onChange={handleChange}              
                 />
-                <button className={styles.button} type="submit">
+                <button className={stylesButtons.green_button} type="submit">
                     {textButton}
                 </button>
             </form>
