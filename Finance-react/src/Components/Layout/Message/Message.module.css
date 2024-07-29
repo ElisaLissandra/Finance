@@ -1,4 +1,4 @@
-.message {
+/* .message {
   margin: 10px 0;
   padding: 10px;
   border-radius: 3px 3px 3px 3px;
@@ -11,4 +11,75 @@
   font-weight: bold;
   font-size: 20px;
 
+} */
+
+/* .message {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  align-items: center;
+}
+
+.message_success {
+  color: #155724; 
+  background-color: #d4edda; 
+  border-color: #c3e6cb; 
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  font-weight: bold;
+} 
+
+ */
+
+
+/*  .message {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  align-items: center;
+  position: fixed;
+  top: 20px; 
+  left: 20px; 
+  width: 320px; 
+  max-width: 90%; 
+  z-index: 1000;
+}
+
+.message_success {
+  color: #155724; 
+  background-color: #d4edda; 
+  border-color: #c3e6cb; 
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  font-weight: bold;
+} */
+
+
+.message {
+  position: fixed; /* Fixes the position relative to the viewport */
+  top: 90px; /* Distance from the top of the viewport */
+  right: 20px; /* Distance from the right of the viewport */
+  width: 300px; /* Set a fixed width for the message box */
+  padding: 15px;
+  margin: 0; /* Remove margin since it's fixed */
+  border-radius: 5px;
+  border: 1px solid transparent;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.message_success {
+  color: #155724; 
+  background-color: #d4edda; 
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  font-weight: bold;
 }
