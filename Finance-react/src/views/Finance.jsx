@@ -10,12 +10,13 @@ import SalaryAdd from "../Components/Layout/PopUp/Add/SalaryAdd.jsx";
 import CostAdd from "../Components/Layout/PopUp/Add/CostAdd.jsx";
 import stylesButtons from "../Components/Layout/Buttons/Buttons.module.css";
 
-
 export default function Finance() {
     const [finance, setFinance] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activePopUp, setActivePopUp] = useState(null); 
 
+
+    // PopUp de adicionar mais salário ou débitos
     const openPopUp = (type) => {
         setActivePopUp(type);
     };
@@ -24,13 +25,22 @@ export default function Finance() {
         setActivePopUp(null);
     };
 
+    // Retorna os dados da api
     const fetchFinanceData = () => {
         axiosClient
             .get("/finance")
             .then(({ data }) => {
-                setFinance(data.data);
-                setLoading(false);
+                const sortedData = data.data.map((item) => {
+                    const combined = [
+                        ...item.salaries.map(salary => ({ ...salary, type: 'salary' })),
+                        ...item.costs.map(cost => ({ ...cost, type: 'cost' }))
+                    ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    
+                    return { ...item, combined };
+                });
 
+                setFinance(sortedData);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Erro ao buscar dados de finanças:", error);
@@ -42,6 +52,7 @@ export default function Finance() {
         fetchFinanceData();
     }, []);
 
+    // Exibe o valor total do salário
     const calculateFinance = (salaries, costs) => {
         const totalSalaries = salaries.reduce(
             (total, salary) => total + parseFloat(salary.salary),
@@ -53,8 +64,28 @@ export default function Finance() {
             0
         );
 
-        return totalSalaries - totalCosts;
+        const result = totalSalaries - totalCosts;
+
+        return result > 0 ? result : 0;
     };
+
+    // Atualizar as informações de forma dinâmica
+    const handleNewEntry = (newEntry, type) => {
+        setFinance(prevFinance => 
+            prevFinance.map(item => {
+                if (item.id === newEntry.itemId) {
+                    const updatedCombined = [
+                        ...item.combined,
+                        { ...newEntry, type }
+                    ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    
+                    return { ...item, combined: updatedCombined };
+                }
+                return item;
+            })
+        );
+    };
+    
 
     return (
         <>
@@ -79,10 +110,12 @@ export default function Finance() {
                         <SalaryAdd
                             show={activePopUp === 'salary'}
                             onClose={closePopUp}
+                            onNewEntry={entry => handleNewEntry(entry, 'salary')}
                         />
                         <CostAdd
                             show={activePopUp === 'cost'}
                             onClose={closePopUp}
+                            onNewEntry={entry => handleNewEntry(entry, 'cost')}
                         />
                         <Table
                             type="Tipo"
@@ -91,12 +124,13 @@ export default function Finance() {
                             value="Valor"
                             text="Ações"
                         >
-                            {item.salaries.map((salary) => (
-                                <SalaryRow key={salary.id} salary={salary} />
-
-                            ))}
-                            {item.costs.map((cost) => (
-                                <CostRow key={cost.id} cost={cost} />
+                            {item.combined.map((entry) => (
+                                entry.type === 'salary' ? (
+                                    <SalaryRow 
+                                    key={entry.id} salary={entry} />
+                                ) : (
+                                    <CostRow key={entry.id} cost={entry} />
+                                )
                             ))}
                         </Table>
                     </Container>

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
+
 const stateContext = createContext({
     user:null,
     token:null,
@@ -33,3 +34,6 @@ export const ContextProvider = ({children}) => {
 }
 
 export const useStateContext = () => useContext(stateContext);
+
+
+

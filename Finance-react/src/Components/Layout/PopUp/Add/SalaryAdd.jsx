@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import axiosClient from "../../../../axiosClient";
 import FormPopUpAdd from "./FormPopUpAdd";
 
-export default function SalaryAdd({show, onClose}) {
+export default function SalaryAdd({show, onClose, onNewEntry}) {
     const salaryRef = useRef();
     const descriptionRef = useRef();
 
@@ -19,6 +19,10 @@ export default function SalaryAdd({show, onClose}) {
           .post("salary", payload)
           .then((response) => {
               console.log(response.data);
+              const newEntry = response.data;
+              if(onNewEntry) {
+                onNewEntry(newEntry,'salary');
+              }
           })
           .catch((error) => {
               console.log(error);
