@@ -3,7 +3,7 @@ import axiosClient from "../../../../axiosClient";
 import FormPopUpEdit from "./FormPopUpEdit";
 
 
-export default function CostEdit({cost, onClose, show}) {
+export default function CostEdit({cost, onClose, show, onSuccess}) {
     const [formData, setFormData] = useState({
       description: "",
       cost: "",
@@ -20,11 +20,14 @@ export default function CostEdit({cost, onClose, show}) {
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      onClose();
       axiosClient
       .put(`/cost/${cost.slug}`, formData)
       .then((response) => {
-        console.log(response.data);
-        onClose();
+        //console.log(response.data);
+        if(onSuccess) {
+          onSuccess('Débito editado com sucesso!');
+        } 
       })
       .catch((error) => {
         console.log(error);

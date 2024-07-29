@@ -2,7 +2,7 @@
   border: 1px solid #cccccc;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 660px; 
+  max-height: 610px; 
   position: relative;
   z-index: 1;
   margin-top: 25px;
@@ -36,7 +36,6 @@
 
 .table_cell {
   padding: 1em;
-  cursor: pointer;
   text-align: center;
   border-bottom: 1px solid #cccccc;
 }
@@ -45,7 +44,6 @@
   font-weight: bold;
   color: #155724; 
   padding: 1em;
-  cursor: pointer;
   text-align: center;
   border-bottom: 1px solid #cccccc;
 }
@@ -54,14 +52,13 @@
   font-weight: bold;
   color: #dc3545; 
   padding: 1em;
-  cursor: pointer;
   text-align: center;
   border-bottom: 1px solid #cccccc;
 }
 
 .tbody_scroll {
   display: block;
-  max-height: 660px; 
+  max-height: 610px; 
   overflow-y: auto;
   width: 100%;
 }

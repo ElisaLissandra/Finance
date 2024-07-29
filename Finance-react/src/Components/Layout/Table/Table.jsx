@@ -7,7 +7,7 @@ export default function Table({children, type, date, description, value, text}) 
             <table className={styles.table}>
                 <thead>
                     <tr>
-                        <th className={styles.table_head}>{type}</th>
+                        {/* <th className={styles.table_head}>{type}</th> */}
                         <th className={styles.table_head}>{date}</th>
                         <th className={styles.table_head}>{description}</th>
                         <th className={styles.table_head}>{value}</th>
@@ -16,7 +16,11 @@ export default function Table({children, type, date, description, value, text}) 
                 </thead>
                 <tbody  className={styles.tbody_scroll}> 
                     {children}
-                  <td className={styles.table_cell} colSpan={4}>&nbsp;</td>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

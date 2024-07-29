@@ -9,12 +9,13 @@ import Table from "../Components/Layout/Table/Table.jsx";
 import SalaryAdd from "../Components/Layout/PopUp/Add/SalaryAdd.jsx";
 import CostAdd from "../Components/Layout/PopUp/Add/CostAdd.jsx";
 import stylesButtons from "../Components/Layout/Buttons/Buttons.module.css";
+import SuccessMessages from "../Components/Layout/Message/SuccessMessages.jsx";
 
 export default function Finance() {
     const [finance, setFinance] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activePopUp, setActivePopUp] = useState(null); 
-
+    const [SuccessMessage, setSuccessMessage] = useState('')
 
     // PopUp de adicionar mais salário ou débitos
     const openPopUp = (type) => {
@@ -85,6 +86,13 @@ export default function Finance() {
             })
         );
     };
+
+    const handleSuccessMessage = (message) => { 
+        setSuccessMessage(message);
+        setTimeout(() => {
+            setSuccessMessage('');
+        }, 5000);
+    };
     
 
     return (
@@ -103,6 +111,10 @@ export default function Finance() {
                                 {calculateFinance(item.salaries, item.costs).toFixed(2)}
                             </p>
                         </div>
+                        {SuccessMessages && (
+                            <SuccessMessages message={SuccessMessage}/>
+                                
+                        )}
                         <div className={stylesButtons.buttons}>
                             <AddButton onClick={() => openPopUp('salary')} text="Salário" />
                             <AddButton onClick={() => openPopUp('cost')} text="Débito" />
@@ -111,32 +123,49 @@ export default function Finance() {
                             show={activePopUp === 'salary'}
                             onClose={closePopUp}
                             onNewEntry={entry => handleNewEntry(entry, 'salary')}
+                            onSuccess={handleSuccessMessage}
                         />
                         <CostAdd
                             show={activePopUp === 'cost'}
                             onClose={closePopUp}
                             onNewEntry={entry => handleNewEntry(entry, 'cost')}
+                            onSuccess={handleSuccessMessage}
                         />
                         <Table
-                            type="Tipo"
+                           /*  type="Tipo" */
                             date="Data"
                             description="Descrição"
                             value="Valor"
                             text="Ações"
-                        >
-                            {item.combined.map((entry) => (
-                                entry.type === 'salary' ? (
-                                    <SalaryRow 
-                                    key={entry.id} salary={entry} />
-                                ) : (
-                                    <CostRow key={entry.id} cost={entry} />
-                                )
-                            ))}
+                        >   
+                            {item.combined.length > 0 ? (
+                                item.combined.map((entry) => (
+                                    entry.type === 'salary' ? (
+                                        <SalaryRow 
+                                            key={entry.id} 
+                                            salary={entry} 
+                                            onSuccess={handleSuccessMessage}
+                                        />
+                                    ) : (
+                                        <CostRow 
+                                            key={entry.id} 
+                                            cost={entry}
+                                            onSuccess={handleSuccessMessage} 
+                                        />
+                                    )
+                                ))
+                            ) : (
+                                <tr className={styles.message_nodata}>
+                                    <td>
+                                        Nenhum dado encontrado.
+                                    </td>
+                                </tr>
+                            )}
                         </Table>
                     </Container>
                 ))
             ) : (
-                <p>Nenhum dado encontrado.</p>
+                <p className={styles.message_nodata}>Nenhum dado encontrado.</p>
             )}
         </>
     );

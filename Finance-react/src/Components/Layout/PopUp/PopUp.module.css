@@ -8,12 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .popup {
   width: 500px;
-  z-index: 1001;
+  z-index: 2001;
   background: #FFFFFF;
   max-width: 500px;
   padding: 34px;

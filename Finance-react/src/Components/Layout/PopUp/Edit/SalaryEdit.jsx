@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormPopUpEdit from "./FormPopUpEdit";
 import axiosClient from "../../../../axiosClient";
 
-export default function SalaryEdit({ salary, onClose, show }) {
+export default function SalaryEdit({ salary, onClose, show, onSuccess}) {
     const [formData, setFormData] = useState({
         description: "",
         salary: "",
@@ -19,11 +19,14 @@ export default function SalaryEdit({ salary, onClose, show }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        onClose();
         axiosClient
             .put(`/salary/${salary.slug}`, formData)
             .then((response) => {
-                console.log(response.data);
-                onClose();
+                //console.log(response.data);
+                if(onSuccess) {
+                    onSuccess('Salário editado com sucesso!');
+                }
             })
             .catch((error) => {
                 console.log(error);

@@ -2,6 +2,14 @@
   justify-content: end;
   display: flex;
   gap: 15px; 
+  position: relative;
+}
+
+.buttons_table {
+  justify-content: center;
+  display: flex;
+  gap: 15px; 
+  position: relative;
 }
 
 .green_button {

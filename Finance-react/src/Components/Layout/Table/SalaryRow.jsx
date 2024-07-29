@@ -6,7 +6,7 @@ import DeleteButton from "../Buttons/DeleteButton";
 import SalaryEdit from "../PopUp/Edit/SalaryEdit.jsx";
 import SalaryDelete from "../PopUp/Delete/SalaryDelete.jsx";
 
-export default function SalaryRow({ salary }) {
+export default function SalaryRow({ salary, onSuccess }) {
     const [activeEditPopUp, setActiveEditPopUp] = useState(false); 
     const [activeDeletePopUp, setActiveDeletePopUp] = useState(false); 
     const [editedSalary, setEditedSalary] = useState(null);
@@ -45,14 +45,14 @@ export default function SalaryRow({ salary }) {
     return (
         <>
             <tr key={salary.id} className={TableStyles.table_row}>
-                <td className={TableStyles.table_cell_salary}>Entrada</td>
+                {/* <td className={TableStyles.table_cell_salary}>Entrada</td> */}
                 <td className={TableStyles.table_cell}>
                     {formatDateTime(salary.created_at)}
                 </td>
                 <td className={TableStyles.table_cell}>{salary.description}</td>
-                <td className={TableStyles.table_cell}>R$ {salary.salary}</td>
+                <td className={TableStyles.table_cell_salary}> + R$ {salary.salary}</td>
                 <td className={TableStyles.table_cell}>
-                    <div className={stylesButtons.buttons}>
+                    <div className={stylesButtons.buttons_table}>
                         <EditButton onClick={openPopUp} />
                         <DeleteButton onClick={openDeletePopUp} />
                     </div>
@@ -62,11 +62,13 @@ export default function SalaryRow({ salary }) {
                 salary={editedSalary}  
                 show={activeEditPopUp} 
                 onClose={closePopUp}
+                onSuccess={onSuccess}
             /> 
             <SalaryDelete 
             salary={salaryToDelete}
             show={activeDeletePopUp}
             onClose={closePopUp}
+            onSuccess={onSuccess}
             />    
         </>
     );

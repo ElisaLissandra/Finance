@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import axiosClient from "../../../../axiosClient";
 import FormPopUpAdd from "./FormPopUpAdd";
 
-export default function CostAdd({show, onClose}) {
+export default function CostAdd({show, onClose, onSuccess}) {
     const costRef = useRef();
     const descriptionRef = useRef();
 
@@ -18,7 +18,10 @@ export default function CostAdd({show, onClose}) {
         axiosClient
           .post("cost", payload)
           .then((response) => {
-              console.log(response.data);
+            //console.log(response.data);
+            if(onSuccess) {
+              onSuccess('Débito adicionado com sucesso!');
+            }
           })
           .catch((error) => {
               console.log(error);

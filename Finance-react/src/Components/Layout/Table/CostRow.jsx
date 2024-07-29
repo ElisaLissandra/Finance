@@ -6,7 +6,7 @@ import DeleteButton from "../Buttons/DeleteButton";
 import CostEdit from "../PopUp/Edit/CostEdit";
 import CostDelete from "../PopUp/Delete/CostDelete";
 
-export default function CostRow({ cost }) {
+export default function CostRow({ cost, onSuccess }) {
     const [activeEditPopUp, setActiveEditPopUp] = useState(false);
     const [activeDeletePopUp, setActiveDeletePopUp] = useState(false);
     const [editedCost, setEditedCost] = useState(null);
@@ -48,14 +48,14 @@ export default function CostRow({ cost }) {
                 key={cost.id}
                 className={TableStyles.table_row}
             >
-                <td className={TableStyles.table_cell_cost}>Débito</td>
+                {/* <td className={TableStyles.table_cell_cost}>Débito</td> */}
                 <td className={TableStyles.table_cell}>
                     {formatDateTime(cost.created_at)}
                 </td>
                 <td className={TableStyles.table_cell}>{cost.description}</td>
-                <td className={TableStyles.table_cell}>R$ {cost.cost}</td>
+                <td className={TableStyles.table_cell_cost}> - R$ {cost.cost}</td>
                 <td className={TableStyles.table_cell}>
-                    <div className={stylesButtons.buttons}>
+                    <div className={stylesButtons.buttons_table}>
                         <EditButton onClick={openPopUp} />
                         <DeleteButton onClick={openDeletePopUp}/>
                     </div>
@@ -65,11 +65,13 @@ export default function CostRow({ cost }) {
                 cost={editedCost}
                 show={activeEditPopUp}
                 onClose={closePopUp}
+                onSuccess={onSuccess}
             />
             <CostDelete
                 cost={costToDelete}
                 show={activeDeletePopUp}
                 onClose={closePopUp}
+                onSuccess={onSuccess}
             />
         </>
     );

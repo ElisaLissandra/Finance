@@ -1,0 +1,14 @@
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+  text-align: end;
+}
+
+.message_success {
+  color: #270;
+  background-color: #DFF2BF;
+  font-weight: bold;
+  font-size: 20px;
+
+}
