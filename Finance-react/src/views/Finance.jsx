@@ -12,6 +12,7 @@ import stylesButtons from "../Components/Layout/Buttons/Buttons.module.css";
 import SuccessMessages from "../Components/Layout/Message/SuccessMessages.jsx";
 
 export default function Finance() {
+
     const [finance, setFinance] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activePopUp, setActivePopUp] = useState(null); 
@@ -36,7 +37,6 @@ export default function Finance() {
                         ...item.salaries.map(salary => ({ ...salary, type: 'salary' })),
                         ...item.costs.map(cost => ({ ...cost, type: 'cost' }))
                     ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                    
                     return { ...item, combined };
                 });
 
@@ -70,23 +70,8 @@ export default function Finance() {
         return result > 0 ? result : 0;
     };
 
-    // Atualizar as informações de forma dinâmica
-    const handleNewEntry = (newEntry, type) => {
-        setFinance(prevFinance => 
-            prevFinance.map(item => {
-                if (item.id === newEntry.itemId) {
-                    const updatedCombined = [
-                        ...item.combined,
-                        { ...newEntry, type }
-                    ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                    
-                    return { ...item, combined: updatedCombined };
-                }
-                return item;
-            })
-        );
-    };
 
+    // Exibir as mensagens de sucesso
     const handleSuccessMessage = (message) => { 
         setSuccessMessage(message);
         setTimeout(() => {
@@ -122,17 +107,20 @@ export default function Finance() {
                         <SalaryAdd
                             show={activePopUp === 'salary'}
                             onClose={closePopUp}
-                            onNewEntry={entry => handleNewEntry(entry, 'salary')}
-                            onSuccess={handleSuccessMessage}
+                            onSuccess={(message) => {
+                                handleSuccessMessage(message);
+                                fetchFinanceData();
+                            }}
                         />
                         <CostAdd
                             show={activePopUp === 'cost'}
                             onClose={closePopUp}
-                            onNewEntry={entry => handleNewEntry(entry, 'cost')}
-                            onSuccess={handleSuccessMessage}
+                            onSuccess={(message) => {
+                                handleSuccessMessage(message);
+                                fetchFinanceData();
+                            }}
                         />
                         <Table
-                           /*  type="Tipo" */
                             date="Data"
                             description="Descrição"
                             value="Valor"
@@ -144,13 +132,19 @@ export default function Finance() {
                                         <SalaryRow 
                                             key={entry.id} 
                                             salary={entry} 
-                                            onSuccess={handleSuccessMessage}
+                                            onSuccess={(message) => {
+                                                handleSuccessMessage(message);
+                                                fetchFinanceData();
+                                            }}
                                         />
                                     ) : (
                                         <CostRow 
                                             key={entry.id} 
                                             cost={entry}
-                                            onSuccess={handleSuccessMessage} 
+                                            onSuccess={(message) => {
+                                                handleSuccessMessage(message);
+                                                fetchFinanceData();
+                                            }}
                                         />
                                     )
                                 ))

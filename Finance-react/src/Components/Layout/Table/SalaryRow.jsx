@@ -45,7 +45,6 @@ export default function SalaryRow({ salary, onSuccess }) {
     return (
         <>
             <tr key={salary.id} className={TableStyles.table_row}>
-                {/* <td className={TableStyles.table_cell_salary}>Entrada</td> */}
                 <td className={TableStyles.table_cell}>
                     {formatDateTime(salary.created_at)}
                 </td>

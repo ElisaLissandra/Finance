@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import axiosClient from "../../../../axiosClient";
 import FormPopUpAdd from "./FormPopUpAdd";
 
-export default function SalaryAdd({show, onClose, onNewEntry, onSuccess}) {
+export default function SalaryAdd({show, onClose, onSuccess}) {
+
     const salaryRef = useRef();
-    const descriptionRef = useRef();
-    
+    const descriptionRef = useRef();    
 
     const submit = (e) => {
       e.preventDefault();
@@ -20,11 +20,6 @@ export default function SalaryAdd({show, onClose, onNewEntry, onSuccess}) {
           .post("salary", payload)
           .then((response) => {
               //console.log(response.data);
-              const newEntry = response.data;
-              if(onNewEntry) {
-                onNewEntry(newEntry,'salary');
-              }
-
               if(onSuccess) {
                 onSuccess('Salário adicionado com sucesso!');
               }
