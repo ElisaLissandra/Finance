@@ -2,16 +2,16 @@ import React from "react";
 import PopUpDelete from "./PopUpDelete";
 import axiosClient from "../../../../axiosClient";
 
-export default function SalaryDelete({ salary, show, onClose, onSuccess }) {
+export default function SalaryDelete({ salary, show, onClose, onDelete}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         onClose();
         axiosClient
             .delete(`/salary/${salary.slug}`)
             .then((response) => {
-                //console.log(response.data);
-                if(onSuccess) {
-                    onSuccess('Salário excluído com sucesso!');
+                //console.log(response.data.data);
+                if(onDelete) {
+                    onDelete(response.data.message, response.data.data);
                 }
             })
             .catch((error) => {

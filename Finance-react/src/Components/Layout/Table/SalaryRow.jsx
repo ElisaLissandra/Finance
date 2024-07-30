@@ -6,7 +6,7 @@ import DeleteButton from "../Buttons/DeleteButton";
 import SalaryEdit from "../PopUp/Edit/SalaryEdit.jsx";
 import SalaryDelete from "../PopUp/Delete/SalaryDelete.jsx";
 
-export default function SalaryRow({ salary, onSuccess }) {
+export default function SalaryRow({ salary, onSuccess, onDelete}) {
     const [activeEditPopUp, setActiveEditPopUp] = useState(false); 
     const [activeDeletePopUp, setActiveDeletePopUp] = useState(false); 
     const [editedSalary, setEditedSalary] = useState(null);
@@ -68,6 +68,7 @@ export default function SalaryRow({ salary, onSuccess }) {
             show={activeDeletePopUp}
             onClose={closePopUp}
             onSuccess={onSuccess}
+            onDelete={onDelete}
             />    
         </>
     );

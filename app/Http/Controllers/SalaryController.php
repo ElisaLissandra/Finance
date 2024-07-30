@@ -23,9 +23,9 @@ class SalaryController extends Controller
     public function store(SalaryRequest $request) { 
         try{
             $salaryValidated = $request->validated();
-            $this->salaryRepository->store($salaryValidated);
+            $salary = $this->salaryRepository->store($salaryValidated);
 
-            return new CustomResponse(null, 201, 'Salário cadastrado com sucesso');
+            return new CustomResponse($salary->toArray(), 201, 'Salário cadastrado com sucesso');
 
         } catch (\Exception $e) {
             //throw new CustomException('Falha no cadastro do salário', 404);
@@ -44,13 +44,13 @@ class SalaryController extends Controller
 
     public function update(SalaryRequest $request, $slug) {
         $salaryUpdate = $request->validated();
-        $this->salaryRepository->update($salaryUpdate, $slug);
+        $salary = $this->salaryRepository->update($salaryUpdate, $slug);
 
-        return new CustomResponse(null, 200, 'Salário atualizado com sucesso');
+        return new CustomResponse($salary->toArray(), 200, 'Salário atualizado com sucesso');
     }
 
     public function destroy($slug) {
-        $this->salaryRepository->destroy($slug);
-        return new CustomResponse(null, 200, 'Salário excluído com sucesso');
+       $salary = $this->salaryRepository->destroy($slug);
+        return new CustomResponse($salary->toArray(), 200, 'Salário excluído com sucesso');
     }
 }

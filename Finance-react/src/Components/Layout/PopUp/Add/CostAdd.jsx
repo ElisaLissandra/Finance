@@ -20,7 +20,7 @@ export default function CostAdd({show, onClose, onSuccess}) {
           .then((response) => {
             //console.log(response.data);
             if(onSuccess) {
-              onSuccess('Débito adicionado com sucesso!');
+              onSuccess(response.data.message, response.data.data);
             }
           })
           .catch((error) => {

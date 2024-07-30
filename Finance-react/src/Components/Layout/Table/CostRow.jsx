@@ -6,7 +6,7 @@ import DeleteButton from "../Buttons/DeleteButton";
 import CostEdit from "../PopUp/Edit/CostEdit";
 import CostDelete from "../PopUp/Delete/CostDelete";
 
-export default function CostRow({ cost, onSuccess }) {
+export default function CostRow({ cost, onSuccess, onDelete }) {
     const [activeEditPopUp, setActiveEditPopUp] = useState(false);
     const [activeDeletePopUp, setActiveDeletePopUp] = useState(false);
     const [editedCost, setEditedCost] = useState(null);
@@ -72,6 +72,7 @@ export default function CostRow({ cost, onSuccess }) {
                 show={activeDeletePopUp}
                 onClose={closePopUp}
                 onSuccess={onSuccess}
+                onDelete={onDelete}
             />
         </>
     );

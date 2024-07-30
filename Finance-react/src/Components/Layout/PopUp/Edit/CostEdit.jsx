@@ -24,9 +24,9 @@ export default function CostEdit({cost, onClose, show, onSuccess}) {
       axiosClient
       .put(`/cost/${cost.slug}`, formData)
       .then((response) => {
-        //console.log(response.data);
+        //console.log(response.data.data);
         if(onSuccess) {
-          onSuccess('Débito editado com sucesso!');
+          onSuccess(response.data.message, response.data.data);
         } 
       })
       .catch((error) => {

@@ -21,7 +21,7 @@ export default function SalaryAdd({show, onClose, onSuccess}) {
           .then((response) => {
               //console.log(response.data);
               if(onSuccess) {
-                onSuccess('Salário adicionado com sucesso!');
+                onSuccess(response.data.message, response.data.data);
               }
               setTimeout(() => {
                 onClose();

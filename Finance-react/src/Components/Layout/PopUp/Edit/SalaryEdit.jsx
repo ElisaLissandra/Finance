@@ -23,9 +23,9 @@ export default function SalaryEdit({ salary, onClose, show, onSuccess}) {
         axiosClient
             .put(`/salary/${salary.slug}`, formData)
             .then((response) => {
-                //console.log(response.data);
+                //console.log(response.data.data);
                 if(onSuccess) {
-                    onSuccess('Salário editado com sucesso!');
+                    onSuccess(response.data.message, response.data.data);
                 }
             })
             .catch((error) => {
