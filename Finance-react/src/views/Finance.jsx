@@ -62,16 +62,14 @@ export default function Finance() {
     }, []);
 
     // Exibe o valor total do salário
-    const calculateFinance = (salaries, costs) => {
-        const totalSalaries = salaries.reduce(
-            (total, salary) => total + parseFloat(salary.salary),
-            0,
-        );
+    const calculateFinance = (combined) => {
+        const totalSalaries = combined
+            .filter((entry) => entry.type === "salary")
+            .reduce((total, salary) => total + parseFloat(salary.salary), 0);
 
-        const totalCosts = costs.reduce(
-            (total, cost) => total + parseFloat(cost.cost),
-            0,
-        );
+        const totalCosts = combined
+            .filter((entry) => entry.type === "cost")
+            .reduce((total, cost) => total + parseFloat(cost.cost), 0);
 
         const result = totalSalaries - totalCosts;
 
@@ -146,10 +144,7 @@ export default function Finance() {
                             </p>
                             <p className={styles.value_salary}>
                                 R${" "}
-                                {calculateFinance(
-                                    item.salaries,
-                                    item.costs,
-                                ).toFixed(2)}
+                                {calculateFinance(item.combined).toFixed(2)}
                             </p>
                         </div>
                         {SuccessMessages && (

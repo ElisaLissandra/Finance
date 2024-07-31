@@ -6,17 +6,17 @@ use Exception;
 
 class CustomException extends Exception
 {
-    protected $message;
     protected $status;
 
-    public function __construct($message, $status) {
-        $this->message = $message;
+    public function __construct($message, $status, Exception $previous = null) {
+        parent::__construct($message, 0, $previous);
         $this->status = $status;
     }
 
-    public function render() {
+    public function render($request)
+    {
         return response()->json([
-            'message' => $this->message,
+            'message' => $this->getMessage(),
             'status' => $this->status
         ], $this->status);
     }

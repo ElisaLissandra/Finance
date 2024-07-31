@@ -1,11 +1,12 @@
 import axiosClient from "../axiosClient";
-import React, { useRef } from "react";
+import React, { useRef, useState} from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import Form from "../Components/Layout/Form/Form";
 import Input from "../Components/Layout/Form/Input";
 import Button from "../Components/Layout/Form/Button";
 import Links from "../Components/Layout/Form/Links";
+import styles from "../Components/Layout/Message/Message.module.css";
 
 export default function register() {
     // Referencia as informações adicionas no formulário
@@ -14,6 +15,7 @@ export default function register() {
     const passwordRef = useRef();
     //const password_confirmationRef = useRef();
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Armazena os dados e o token do usuário
     const { setUser, setToken } = useStateContext();
@@ -41,7 +43,12 @@ export default function register() {
                 const response = err.response;
                 // Verifica se houve erro de validação
                 if (response && response.status === 422) {
-                    console.log(response.data.errors);
+                    setErrorMessage(
+                        "A senha deve conter letras (maiúsculas e minúsculas), números e caracteres especiais.",
+                    );
+                    setTimeout(() => {
+                        setErrorMessage("");
+                    }, 5000);
                 }
             });
     };
@@ -49,20 +56,14 @@ export default function register() {
     return (
         <>
             <Form title="Cadastre-se" submit={submit}>
-                <Input 
-                    type="text" 
-                    ref={nameRef} 
-                    placeholder="Nome" 
-                />
-                <Input 
-                    type="email" 
-                    ref={emailRef} 
-                    placeholder="Email" />
-                <Input 
-                    type="password" 
-                    ref={passwordRef}
-                     placeholder="Senha" 
-                />
+                <Input type="text" ref={nameRef} placeholder="Nome" />
+                <Input type="email" ref={emailRef} placeholder="Email" />
+                <Input type="password" ref={passwordRef} placeholder="Senha" />
+                {errorMessage && (
+                    <div className={styles.message_error} style={{ display: errorMessage ? "block" : "none" }}>
+                        {errorMessage}
+                    </div>
+                )}
                 <Button type="submit" text="Cadastrar" />
                 <Links text="Já possui login?" to="/" textTo="Login" />
             </Form>

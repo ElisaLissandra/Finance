@@ -26,20 +26,29 @@ class UserController extends Controller
         try {
             $login = $request->validated();
             $user = $this->userRepository->login($login);
-
-            if(!$user) {
+    
+            if (!$user) {
                 throw new CustomException('E-mail ou senha inválidos', 401);
             }
-
+    
             $token = JWTAuth::fromUser($user); 
-
+    
             return new CustomResponse([
                 'user' => $user, 
                 'token' => $token
             ], 200);
-        }catch(\Exception $e) {
-            return new CustomException($e->getMessage(), $e->getCode());
+        } catch (CustomException $e) {
+            // Se for uma CustomException, use o método render dela
+            return $e->render($request);
+        } catch (\Exception $e) {
+            // Para outras exceções, retorne um erro genérico
+            return response()->json([
+                'error' => 'Erro interno do servidor'
+            ], 500);
         }
+
+
+        
     }
 
     public function refreshToken() {
