@@ -27,8 +27,9 @@ export default function Login() {
         axiosClient
             .post("login", payload)
             .then(({ data }) => {
-                setToken(data.data.token);
-                setUser(data.data.user);
+                const { token, user} = data.data;
+                setToken(token);
+                setUser(user);
                 navigate("/finance");
             })
             .catch((err) => {

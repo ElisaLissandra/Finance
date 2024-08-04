@@ -51,7 +51,7 @@ export default function Finance() {
                 setFinance(sortedData);
                 setLoading(false);
             })
-            .catch((error) => {
+            .catch((error) => {  
                 console.error("Erro ao buscar dados de finanças:", error);
                 setLoading(false);
             });

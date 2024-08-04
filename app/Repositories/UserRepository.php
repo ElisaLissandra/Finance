@@ -18,6 +18,8 @@ class UserRepository implements UserRepositoryInterface {
         if(Auth::attempt($credentials)) {
             return Auth::user();
         }
+
+        return null;
     }
     
     public function logout() {

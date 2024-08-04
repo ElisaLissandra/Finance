@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./Layout/NavBar";
 
 export default function DefaultLayout() {
@@ -9,33 +9,40 @@ export default function DefaultLayout() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!token) {
-            return navigate("/");
+        const isTokenValid = (token) => {
+            console.log("Access token");
+            return token !== null;
+        };
+
+        if (!isTokenValid(token)) {
+            setToken(null);
+            navigate("/");
         }
 
-        axiosClient.get('/user')
-            .then(({ data }) => {
-                setUser(data.data);
-            })
-            .catch((error) => {
-                if (error.response.status === 401) {
+        if(!user) {
+            axiosClient
+                .get("/user")
+                .then(({ data }) => {
+                    setUser(data.data);
+                })
+                .catch(() => {
                     setToken(null);
                     navigate("/");
-                }
-            });
-    }, [token, setToken, navigate, setUser]);
-
-    if (!token) {
-        return <Navigate to="/" />;
-    }
+                });
+        }
+    }, [token, navigate, setUser, setToken]);
 
     const onLogout = (e) => {
         e.preventDefault();
-        axiosClient.post('/logout')
-            .then(({}) => {
-                setUser(null);
-                setToken(null);
-            })
+        axiosClient.post("/logout").then(() => {
+            setUser(null);
+            setToken(null);
+            navigate("/");
+        });
+    };
+
+    if (!token) {
+        return null;
     }
 
     return (

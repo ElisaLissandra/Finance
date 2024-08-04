@@ -6,6 +6,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Repositories\UserRepository;
 use App\Http\Response\CustomResponse;
 use App\Exceptions\CustomException;
+use Carbon\Carbon;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -35,7 +36,7 @@ class UserController extends Controller
     
             return new CustomResponse([
                 'user' => $user, 
-                'token' => $token
+                'token' => $token,
             ], 200);
         } catch (CustomException $e) {
             // Se for uma CustomException, use o método render dela

@@ -1,8 +1,9 @@
 .navbar {
   display: flex;
   background-color: #003366;
-  padding: 1.5em;
+  padding: 1em;
 }
+
 
 .list {
   display: flex;
