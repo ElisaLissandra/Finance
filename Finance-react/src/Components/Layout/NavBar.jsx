@@ -1,6 +1,14 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import styles from "../Layout/NavBar.module.css";
 import financeLogo from '../../assets/logo_navbar.png';
+
+NavBar.propTypes = {
+    user: PropTypes.shape({
+        name: PropTypes.string
+    }).isRequired,
+    onLogout: PropTypes.func.isRequired,
+};
+
 export default function NavBar({ user, onLogout }) {
     return (
         <nav className={styles.navbar}>

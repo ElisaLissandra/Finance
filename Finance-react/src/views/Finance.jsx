@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axiosClient from "../axiosClient";
 import styles from "../views/Finance.module.css";
 import AddButton from "../Components/Layout/Buttons/AddButton.jsx";
@@ -73,7 +73,7 @@ export default function Finance() {
 
         const result = totalSalaries - totalCosts;
 
-        return result > 0 ? result : 0;
+        return result;
     };
 
     // Adiciona um salário ou custo

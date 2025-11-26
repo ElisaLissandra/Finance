@@ -11,7 +11,7 @@ const stateContext = createContext({
 
 export const ContextProvider = ({children}) => {
     
-    const [user, setUser ] = useState({});
+    const [user, setUser] = useState(null);
 
     // Recupera o token armazenado no localStorage
     const [token, _setToken ] = useState(localStorage.getItem('ACCESS_TOKEN'));

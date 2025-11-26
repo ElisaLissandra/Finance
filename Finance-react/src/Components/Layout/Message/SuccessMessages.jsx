@@ -1,6 +1,10 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styles from "./Message.module.css";
 
+
+SuccessMessages.propTypes = {
+  message: PropTypes.string,
+};
 
 export default function SuccessMessages({message}) {
   return (
@@ -11,3 +15,4 @@ export default function SuccessMessages({message}) {
     </div>
   );
 }
+

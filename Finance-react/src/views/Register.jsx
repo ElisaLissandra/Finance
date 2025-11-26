@@ -1,5 +1,5 @@
 import axiosClient from "../axiosClient";
-import React, { useRef, useState} from "react";
+import { useRef, useState} from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import Form from "../Components/Layout/Form/Form";
@@ -8,7 +8,7 @@ import Button from "../Components/Layout/Form/Button";
 import Links from "../Components/Layout/Form/Links";
 import styles from "../Components/Layout/Message/Message.module.css";
 
-export default function register() {
+export default function Register() {
     // Referencia as informações adicionas no formulário
     const nameRef = useRef();
     const emailRef = useRef();
@@ -16,6 +16,7 @@ export default function register() {
     //const password_confirmationRef = useRef();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     // Armazena os dados e o token do usuário
     const { setUser, setToken } = useStateContext();
@@ -37,7 +38,11 @@ export default function register() {
             .then(({ data }) => {
                 setToken(data.token);
                 setUser(data.user);
-                navigate("/");
+                setSuccessMessage("Cadastro realizado com sucesso!");
+                setTimeout(() => {
+                    setSuccessMessage("");
+                    navigate("/");
+                }, 3000);
             })
             .catch((err) => {
                 const response = err.response;
@@ -62,6 +67,11 @@ export default function register() {
                 {errorMessage && (
                     <div className={styles.message_error} style={{ display: errorMessage ? "block" : "none" }}>
                         {errorMessage}
+                    </div>
+                )}
+                {successMessage && (
+                    <div className={styles.message_success} style={{ display: successMessage ? "block" : "none" }}>
+                        {successMessage}
                     </div>
                 )}
                 <Button type="submit" text="Cadastrar" />
