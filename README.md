@@ -8,7 +8,7 @@ OBS: Este projeto foi desenvolvido em 2022, para praticar os meus conhecimentos 
 -   **Autenticação de Usuários:** Sistema seguro de registro e login utilizando JWT (JSON Web Tokens).
 -   **Gestão de Salários:** Funcionalidades CRUD (Criar, Ler, Atualizar, Excluir) para os salários do usuário.
 -   **Gestão de Custos:** Funcionalidades CRUD para as despesas do usuário.
--   **Dashboard Financeiro:** Uma visão consolidada que apresenta o balanço entre salários e despesas, fornecendo um resumo da saúde financeira.
+-   **Dashboard Financeiro:** Uma visão simples que apresenta o balanço entre salários e despesas, fornecendo um resumo da saúde financeira.
 -   **Interface Reativa:** Frontend construído com React e Vite, proporcionando uma experiência de usuário rápida e fluida.
 -   **Arquitetura Sólida:** O backend utiliza o Padrão de Repositório para separar a lógica de negócios do acesso a dados, promovendo um código mais limpo e de fácil manutenção.
 
