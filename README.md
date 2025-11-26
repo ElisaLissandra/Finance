@@ -3,7 +3,7 @@
 Este é um projeto full-stack de um sistema de gestão financeira pessoal, desenvolvido para permitir que os usuários controlem seus salários e despesas de forma eficiente. A aplicação conta com um backend robusto em **Laravel** que serve uma API segura e um frontend moderno e reativo em **React**.
 OBS: Este projeto foi desenvolvido em 2022, para praticar os meus conhecimentos em desenvolvimento web com Laravek e React.
 
-## ✨ Recursos Principais
+## Recursos Principais
 
 -   **Autenticação de Usuários:** Sistema seguro de registro e login utilizando JWT (JSON Web Tokens).
 -   **Gestão de Salários:** Funcionalidades CRUD (Criar, Ler, Atualizar, Excluir) para os salários do usuário.
@@ -12,7 +12,7 @@ OBS: Este projeto foi desenvolvido em 2022, para praticar os meus conhecimentos 
 -   **Interface Reativa:** Frontend construído com React e Vite, proporcionando uma experiência de usuário rápida e fluida.
 -   **Arquitetura Sólida:** O backend utiliza o Padrão de Repositório para separar a lógica de negócios do acesso a dados, promovendo um código mais limpo e de fácil manutenção.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 Laravel e Reactjs
 
 ### Backend (API)
@@ -29,7 +29,7 @@ Laravel e Reactjs
 -   **UI/Componentes:** Material-UI (MUI), PrimeIcons
 
 
-## 🔧 Instalação e Configuração
+## Instalação e Configuração
 
 Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
 
@@ -98,7 +98,7 @@ O cliente Axios em `Finance-react/src/axiosClient.js` já está pré-configurado
 
 ---
 
-## ▶️ Executando a Aplicação
+##  Executando a Aplicação
 
 Você precisará de dois terminais abertos para executar o backend e o frontend simultaneamente.
 
@@ -118,7 +118,7 @@ A aplicação React estará acessível em `http://localhost:5173` (ou outra port
 
 ---
 
-## 📡 Endpoints da API
+## Endpoints da API
 
 Todas as rotas de dados requerem um token JWT válido no cabeçalho `Authorization: Bearer <token>`.
 
@@ -145,7 +145,7 @@ Todas as rotas de dados requerem um token JWT válido no cabeçalho `Authorizati
 | `GET`      | `/api/finance`           | Retorna dados consolidados de finanças.           | **Sim**      |
 
 
-## 🏛️ Estrutura do Projeto
+## Estrutura do Projeto
 
 O projeto é organizado em duas partes principais:
 
